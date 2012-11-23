@@ -1,0 +1,54 @@
+//This is a Javascript plugin for scalling map areas 
+//along with the orginal image
+//originally made so that my map links continued to work 
+//within a responsive web framework
+
+<script>
+$(window).bind("load resize", function(){
+  var Mapresize = {
+
+    init: function(config) {
+      this.coords.forEach(value,i) {
+      this.defcoords[i] = value
+    }
+      this.calcsize(this.defcoords);
+    },
+
+   calcSize: function() {
+   var new_x1, new_x2, new_y1, new_y2,
+   theImage = new Image(),
+   screenImage = image_tag,
+   original_image_width=theImage.width,
+   original_image_height=theImage.height,
+   new_image_width = screenImage.width(),
+   new_image_height = screenImage.height(),
+   hotspots = map_area_tag.length,
+   newcoords; 
+   theImage.src = screenImage.attr("src"),
+   
+  },
+
+  redefCoords: function() {
+   for(var i=0;i<hotspots;i++) {
+
+    coords=defcoords[i].split(",");
+    new_x1 = (new_image_width/original_image_width)*coords[0];
+    new_y1 = (new_image_height/original_image_height)*coords[1];
+    new_x2 = (new_image_width/original_image_width)*coords[2];
+    new_y2 = (new_image_height/original_image_height)*coords[3];
+    newcoords = new_x1+","+new_y1+","+new_x2+","+new_y2;
+
+    map_area_tag[i].coords=newcoords;
+}
+
+}
+};
+
+Mapresize.init({
+  //Read up again on how to add these in using options
+  image_tag: $('#timeframe'),
+  map_area_tag: $('timeframemap area'),
+  coords: [{"7,7,98,44"}, {"109,7,259,44"}, {"265,7,392,44"}]
+})
+
+</script>
